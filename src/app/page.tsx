@@ -1,103 +1,61 @@
-import Image from "next/image";
+"use client";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-export default function Home() {
+export default function HomePage() {
+  const router = useRouter();
+  const [showHowToPlay, setShowHowToPlay] = useState(false);
+  
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gradient-to-br from-blue-50 to-purple-50">
+      <h1 className="text-4xl font-bold mb-6 text-purple-600">himo</h1>
+      
+      {/* 遊び方ボタン */}
+      <button
+        onClick={() => setShowHowToPlay(!showHowToPlay)}
+        className="mb-6 px-4 py-2 rounded-full bg-white text-blue-600 shadow-md hover:bg-blue-50"
+      >
+        {showHowToPlay ? "遊び方を閉じる" : "遊び方を見る"}
+      </button>
+      
+      {/* 遊び方の説明 */}
+      {showHowToPlay && (
+        <div className="w-full max-w-md bg-white p-6 rounded-xl mb-6 shadow-lg">
+          <h2 className="text-2xl font-bold mb-4 text-blue-600">遊び方</h2>
+          <ol className="list-decimal pl-5 space-y-3">
+            <li>ホストがルームを作成し、参加者はルームIDを使って参加します。</li>
+            <li>ホストが「ゲーム開始」ボタンを押すと、全員にランダムな数字とお題が配られます。</li>
+            <li>各プレイヤーは自分の数字に合った発言をします（数字が大きいほどお題に合った発言）。</li>
+            <li>全員の発言が完了すると、ホストは発言を「数字の大きい順」に並び替えます。</li>
+            <li>正しく並び替えられたら全員の勝利！間違えたら失敗...</li>
+          </ol>
+          <div className="mt-6 p-4 rounded-lg bg-blue-50">
+            <p className="text-sm italic">
+              <span className="font-semibold">ポイント:</span>皆が共通認識を持ちやすいものを発言しましょう。
+            </p>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      )}
+      
+      <div className="flex flex-col gap-4 w-full max-w-xs">
+        <button
+          onClick={() => router.push("/create-room")}
+          className="bg-gradient-to-r from-green-400 to-teal-400 text-white px-4 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl hover:bg-green-600"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          新しくルームを作る
+        </button>
+        
+        <button
+          onClick={() => router.push("/join-room")}
+          className="bg-gradient-to-r from-blue-400 to-purple-400 text-white px-4 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl hover:bg-blue-600"
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          既存ルームに参加する
+        </button>
+      </div>
+      <p className="mt-12 text-center text-sm text-gray-500">
+        This game is inspired by the party game "ito", published by Arclight Inc.
+        It is a non-commercial, fan-made project and is not affiliated with or endorsed by Arclight.
+      </p>
     </div>
   );
 }
