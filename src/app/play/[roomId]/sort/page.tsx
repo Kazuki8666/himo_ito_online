@@ -17,7 +17,7 @@ import {
   DropResult,
 } from "react-beautiful-dnd";
 import HowToPlayButton from "@/components/HowToPlayButton";
-import { span } from "framer-motion/client";
+//import { span } from "framer-motion/client";
 
 interface Player {
   id: string;
