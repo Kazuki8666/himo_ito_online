@@ -67,13 +67,21 @@ export default function LobbyPage() {
   const handleStart = async () => {
     if (!roomId || !playerName) return;
     const topicOptions = [
-      "好きな食べ物",
+      "人気な果物",
       "行ってみたい国",
-      "好きな映画",
+      "人気な映画",
       "苦手なもの",
-      "面白かったゲーム",
-      "理想の休日の過ごし方",
+      "人気なゲーム",
       "欲しい能力",
+      "幸せな瞬間",
+      "よく無くしがちなもの",
+      "人気なおにぎりの具",
+      "コンビニでよく買うもの",
+      "１万円以上するけど買って後悔しないもの",
+      "新入社員あるある",
+      "言われたらショックな言葉",
+      "人気なドラマ",
+      "取得が難しい資格",
     ];
     const randomTopic = topicOptions[Math.floor(Math.random() * topicOptions.length)];
     try {

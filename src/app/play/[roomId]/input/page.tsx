@@ -8,12 +8,12 @@ import {
   setDoc,
   onSnapshot,
   updateDoc,
-  getDocs,
-  collection,
+  //getDocs,
+  //collection,
 } from "firebase/firestore";
 import HowToPlayButton from "@/components/HowToPlayButton";
 
-const TOPICS = [
+/* const TOPICS = [
   "人気な果物",
   "行ってみたい国",
   "人気な映画",
@@ -29,7 +29,7 @@ const TOPICS = [
   "言われたらショックな言葉",
   "人気なドラマ",
   "取得が難しい資格",
-];
+]; */
 
 export default function InputPage() {
   const { roomId } = useParams<{ roomId: string }>();
@@ -105,7 +105,7 @@ export default function InputPage() {
       }
     });
     return () => unsub();
-  }, [roomId]);
+  }, [roomId, router]);
 
   useEffect(() => {
     const checkHost = async () => {
@@ -250,7 +250,7 @@ export default function InputPage() {
             皆が共通認識を持ちやすいものを発言しましょう。
           </p>
         </div>
-      </div>ß
+      </div>
     </div>
   );
 }

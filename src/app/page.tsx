@@ -53,7 +53,7 @@ export default function HomePage() {
         </button>
       </div>
       <p className="mt-12 text-center text-sm text-gray-500">
-        This game is inspired by the party game "ito", published by Arclight Inc.
+        This game is inspired by the party game &quot;ito&quot;, published by Arclight Inc.
         It is a non-commercial, fan-made project and is not affiliated with or endorsed by Arclight.
       </p>
     </div>
