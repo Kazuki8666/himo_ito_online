@@ -8,28 +8,8 @@ import {
   setDoc,
   onSnapshot,
   updateDoc,
-  //getDocs,
-  //collection,
 } from "firebase/firestore";
 import HowToPlayButton from "@/components/HowToPlayButton";
-
-/* const TOPICS = [
-  "人気な果物",
-  "行ってみたい国",
-  "人気な映画",
-  "苦手なもの",
-  "人気なゲーム",
-  "欲しい能力",
-  "幸せな瞬間",
-  "よく無くしがちなもの",
-  "人気なおにぎりの具",
-  "コンビニでよく買うもの",
-  "１万円以上するけど買って後悔しないもの",
-  "新入社員あるある",
-  "言われたらショックな言葉",
-  "人気なドラマ",
-  "取得が難しい資格",
-]; */
 
 export default function InputPage() {
   const { roomId } = useParams<{ roomId: string }>();
