@@ -21,6 +21,7 @@ export default function LobbyPage() {
   const [phase, setPhase] = useState<string | null>(null);
   const [roomName, setRoomName] = useState<string | null>(null); 
 
+  // sessionStorageからプレイヤー名を取得
   useEffect(() => {
     const name = sessionStorage.getItem("playerName");
     if (name) setPlayerName(name);
