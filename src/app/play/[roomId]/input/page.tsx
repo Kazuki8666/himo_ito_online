@@ -22,10 +22,12 @@ export default function InputPage() {
   const [isHost, setIsHost] = useState(false);
   const [myNumber, setMyNumber] = useState<number | null>(null);
 
+  // マウント完了フラグ
   useEffect(() => {
     setHasMounted(true);
   }, []);
 
+  // sessionStorageからプレイヤー名を取得
   useEffect(() => {
     if (hasMounted) {
       const name = sessionStorage.getItem("playerName");
@@ -33,6 +35,7 @@ export default function InputPage() {
     }
   }, [hasMounted]);
 
+  // Firestoreからお題と自分の番号を取得
   useEffect(() => {
     const fetchTopicAndNumber = async () => {
       if (!roomId || !playerName) return;
@@ -55,6 +58,7 @@ export default function InputPage() {
     fetchTopicAndNumber();
   }, [roomId, playerName]);
 
+  // 自分のプレイヤー情報をリアルタイム監視
   useEffect(() => {
     if (!roomId || !playerName) return;
     const playerRef = doc(db, "rooms", roomId, "players", playerName);
@@ -67,6 +71,7 @@ export default function InputPage() {
     return () => unsub();
   }, [roomId, playerName]);
 
+  // お題のリアルタイム取得
   useEffect(() => {
     if (!roomId) return;
     const unsub = onSnapshot(doc(db, "rooms", roomId), (docSnap) => {
@@ -76,6 +81,7 @@ export default function InputPage() {
     return () => unsub();
   }, [roomId]);
 
+  // sortに遷移
   useEffect(() => {
     if (!roomId) return;
     const unsub = onSnapshot(doc(db, "rooms", roomId), (docSnap) => {

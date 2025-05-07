@@ -29,7 +29,7 @@ export default function CreateRoomPage() {
         phase: "input",
       });
 
-      // ✅ ホストもプレイヤーとして登録
+      // ホストをプレイヤーとして登録
       await setDoc(doc(db, "rooms", docRef.id, "players", hostName), {
         name: hostName,
         createdAt: new Date(),

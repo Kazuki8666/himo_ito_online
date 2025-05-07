@@ -17,21 +17,23 @@ export default function JoinRoomPage() {
     }
 
     try {
+      // ルームネームをFirestoreにて検索
       const q = query(collection(db, "rooms"), where("roomName", "==", roomName));
       const querySnapshot = await getDocs(q);
       if (querySnapshot.empty) {
         alert("そのルーム名は見つかりませんでした！");
         return;
       }
-
+      // 1件目のidを格納
       const roomDoc = querySnapshot.docs[0];
       const roomId = roomDoc.id;
       if (typeof window !== "undefined") {
         sessionStorage.setItem("playerName", name);
+        //バッファとして50ms待機
         await new Promise((r) => setTimeout(r, 50));
       }
 
-      // ✅ プレイヤー情報を Firestore に登録
+      // プレイヤー情報を Firestore に登録
       await setDoc(doc(db, "rooms", roomId, "players", name), {
         name,
         createdAt: new Date(),
